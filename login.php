@@ -31,6 +31,7 @@ if (is_post() && isset($_POST['login'])) {
 
 $errorMessage = flash('error');
 $successMessage = flash('success');
+$passwordResetPopup = flash('password_reset_popup');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +71,7 @@ $successMessage = flash('success');
                 <label>
                     <input type="checkbox" name="remember" <?= checked(old('remember') !== '') ?>> Remember me
                 </label>
-                <a href="<?= e(url('signup.php')) ?>">Create account</a>
+                <a href="<?= e(url('forgot-password.php')) ?>">Forgot Password?</a>
             </div>
 
             <button type="submit" name="login">Sign In</button>
@@ -82,5 +83,10 @@ $successMessage = flash('success');
         </div>
     </div>
 </main>
+<?php if ($passwordResetPopup): ?>
+<script>
+alert(<?= json_encode($passwordResetPopup) ?>);
+</script>
+<?php endif; ?>
 </body>
 </html>

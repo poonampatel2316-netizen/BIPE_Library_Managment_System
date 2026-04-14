@@ -26,11 +26,9 @@ CREATE TABLE IF NOT EXISTS books_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(180) NOT NULL,
     Author VARCHAR(160) NOT NULL,
-    ISBN VARCHAR(40) NOT NULL UNIQUE,
-    Category VARCHAR(120) NOT NULL,
     Department VARCHAR(120) NOT NULL,
+    department_id INT NOT NULL,
     Description TEXT NULL,
-    Cover_Image VARCHAR(255) NULL,
     Total_copies INT NOT NULL DEFAULT 1,
     Available_copies INT NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -104,6 +102,15 @@ CREATE TABLE IF NOT EXISTS remember_tokens (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_remember_user (user_type, user_id),
     INDEX idx_remember_expiry (expires_at)
+);
+
+CREATE TABLE departments (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    
+    PRIMARY KEY (id),
+    UNIQUE (name)
 );
 
 INSERT INTO admins (name, email, password)

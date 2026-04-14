@@ -11,6 +11,6 @@ $activePage = $activePage ?? '';
         <a href="<?= e(url('my_books.php')) ?>" class="<?= $activePage === 'books' ? 'active' : '' ?>"><i class="fas fa-book"></i> My Books</a>
         <a href="<?= e(url('history.php')) ?>" class="<?= $activePage === 'history' ? 'active' : '' ?>"><i class="fas fa-history"></i> History</a>
         <a href="<?= e(url('fines.php')) ?>" class="<?= $activePage === 'fines' ? 'active' : '' ?>"><i class="fas fa-wallet"></i> Fines</a>
-        <a href="<?= e(url('user_profile.php')) ?>" class="<?= $activePage === 'profile' ? 'active' : '' ?>"><i class="fas fa-user-circle"></i> My Profile</a>
+        <a href="<?= e(url('user_profile.php')) ?>" class="<?= $activePage === 'profile' ? 'active' : '' ?>"><i class="fas fa-user-circle"></i> Edit Profile</a>
     </div>
 </div>

@@ -65,7 +65,7 @@ $navLinks = [
     <section class="about-content">
         <h2>Who We Are</h2>
         <p class="about-text">
-            We are a teams of innovators passionate about making libraries smarter.
+            We are a team of innovators passionate about making libraries smarter.
             Our Library Management System is designed to simplify book management, enhance user experience, and promote a culture of reading in the digital age.
         </p>
 

@@ -71,9 +71,14 @@ $displayName = $user['Name'];
 
         <div class="page-header">
             <h1>My Dashboard</h1>
-            <a href="<?= e(url('catalog.php')) ?>" class="btn-gold">
-                <i class="fas fa-book-open"></i> Explore Books
-            </a>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="<?= e(url('user_profile.php')) ?>" class="btn-gold" style="text-decoration:none; background: transparent; border: 1px solid rgba(212,175,55,0.4); color: var(--accent-gold); box-shadow:none;">
+                    <i class="fas fa-user-pen"></i> Edit Profile
+                </a>
+                <a href="<?= e(url('catalog.php')) ?>" class="btn-gold" style="text-decoration: none;">
+                    <i class="fas fa-book-open"></i> Explore Books
+                </a>
+            </div>
         </div>
 
         <?php if ($successMessage || $errorMessage): ?>

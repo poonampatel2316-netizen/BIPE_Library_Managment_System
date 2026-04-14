@@ -138,6 +138,47 @@ function authenticate_student(string $email, string $password): ?array
     return $student;
 }
 
+function reset_student_password(string $email, string $name, string $newPassword, string $confirmPassword): array
+{
+    $email = strtolower(trim($email));
+    $name = trim($name);
+    $newPassword = trim($newPassword);
+    $confirmPassword = trim($confirmPassword);
+
+    if ($email === '' || $name === '' || $newPassword === '' || $confirmPassword === '') {
+        return ['success' => false, 'message' => 'Please complete all fields to reset your password.'];
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return ['success' => false, 'message' => 'Please enter a valid email address.'];
+    }
+
+    if (strlen($newPassword) < 6) {
+        return ['success' => false, 'message' => 'New password must be at least 6 characters long.'];
+    }
+
+    if (!hash_equals($newPassword, $confirmPassword)) {
+        return ['success' => false, 'message' => 'New password and confirm password do not match.'];
+    }
+
+    $student = db_one(
+        'SELECT id FROM student_table WHERE Email_Address = ? AND Name = ?',
+        [$email, $name]
+    );
+
+    if (!$student) {
+        return ['success' => false, 'message' => 'No student account matched the provided name and email.'];
+    }
+
+    db_execute(
+        'UPDATE student_table SET password = ? WHERE id = ?',
+        [password_hash($newPassword, PASSWORD_DEFAULT), (int) $student['id']],
+        'si'
+    );
+
+    return ['success' => true, 'message' => 'Password changed successfully. Please log in with your new password.'];
+}
+
 function authenticate_admin(string $email, string $password): ?array
 {
     $admin = db_one('SELECT * FROM admins WHERE email = ?', [strtolower(trim($email))]);
